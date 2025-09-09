@@ -4,7 +4,7 @@ import random
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Set
 
-from level.room import (
+from .room import (
     BASIC_TEMPLATES,
     BOSS_ROOM_TEMPLATE,
     Room,
@@ -84,6 +84,8 @@ class Level:
                 if not candidates:
                     candidates = room_templates
                 template = _weighted_choice(candidates)
+            if x + template.width > self.width or y + template.height > self.height:
+                raise ValueError("Room template exceeds level bounds")
             self.rooms[(x, y)] = Room(template=template, x=x, y=y, exits=required.copy())
 
         if path:
