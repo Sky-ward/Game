@@ -1,3 +1,5 @@
+"""Tests for stacking effects and expiration of temporary skills."""
+
 from game.enemy import Enemy
 from game.player import Player
 from game.skills import FireDamage, SpeedBoost
