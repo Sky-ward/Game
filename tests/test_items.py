@@ -1,3 +1,4 @@
+# Tests for consumable items and player interactions.
 from game.items import Consumable
 from game.player import Player
 
