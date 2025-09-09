@@ -19,3 +19,6 @@ The code includes simple `Player`, `Enemy`, `Level`, and `Weapon` classes to ser
 
 For a high-level overview of planned features, see [GDD.md](GDD.md).
 
+
+For a high-level overview of planned features, see [GDD.md](GDD.md).
+
