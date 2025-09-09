@@ -19,7 +19,9 @@ def main() -> None:
     # Player picks up first weapon if available
     if weapons:
         player.pick_up(weapons[0])
+
         player.equip(weapons[0])
+
         print(f"Player equipped {player.weapon.name}")
 
     # Simple combat demo

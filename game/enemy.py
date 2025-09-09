@@ -1,3 +1,4 @@
+
 """Enemy entity with minimal AI for moving and attacking."""
 from __future__ import annotations
 
@@ -7,6 +8,9 @@ from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover
     from .level import Level
     from .player import Player
+
+
+from dataclasses import dataclass
 
 
 @dataclass
@@ -22,6 +26,7 @@ class Enemy:
         self.hp -= actual
         return actual
 
+
     def attack_player(self, player: Player) -> int:
         """Inflict damage on the player."""
         return player.take_damage(self.attack)
@@ -34,6 +39,7 @@ class Enemy:
         if level:
             nx, ny = level.clamp_position(nx, ny)
         self.x, self.y = nx, ny
+
 
     def is_alive(self) -> bool:
         return self.hp > 0

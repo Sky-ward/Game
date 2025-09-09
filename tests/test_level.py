@@ -1,4 +1,6 @@
+
 from game.enemy import Enemy
+
 from game.level import Level
 from game.weapon import Weapon
 
@@ -20,9 +22,11 @@ def test_level_generation_bounds():
         assert 0 <= w.y < level.height
 
 
+
 def test_remove_dead_enemies():
     level = Level(width=5, height=5)
     level.enemies = [Enemy(x=0, y=0, hp=0), Enemy(x=1, y=1, hp=5)]
     level.remove_dead_enemies()
     assert len(level.enemies) == 1
     assert level.enemies[0].hp == 5
+
