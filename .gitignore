@@ -1,2 +1,17 @@
 __pycache__/
 *.pyc
+# Unity
+UnityGame/[Ll]ibrary/
+UnityGame/[Bb]uild/
+UnityGame/[Oo]bj/
+UnityGame/[Ll]ogs/
+UnityGame/[Uu]serSettings/
+UnityGame/Assets/Art/*
+UnityGame/Assets/Audio/*
+UnityGame/Assets/ThirdParty/*
+!UnityGame/Assets/Art/Placeholders/.keep
+!UnityGame/Assets/Audio/Placeholders/.keep
+!UnityGame/Assets/ThirdParty/.keep
+!UnityGame/Assets/Art/Placeholders/
+!UnityGame/Assets/Audio/Placeholders/
+!UnityGame/Assets/ThirdParty/

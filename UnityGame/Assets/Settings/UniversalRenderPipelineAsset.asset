@@ -1,0 +1,10 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_Name: UniversalRenderPipelineAsset
+  m_Script: {fileID: 11500000, guid: 00000000000000000000000000000000, type: 3}
+  m_UseSRPBatcher: 1
+  m_DefaultRenderer: 0
+  m_RendererDataList:
+    - {fileID: 11400001, guid: 55555555555555555555555555555555, type: 3}

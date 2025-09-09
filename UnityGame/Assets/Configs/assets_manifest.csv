@@ -1,0 +1,15 @@
+path,type,usage,expected_size,notes
+Art/Characters/player.png,sprite,player character,256KB,final sprite sheet placeholder
+Art/Characters/player_weapon.png,sprite,player weapon,128KB,
+Art/Enemies/slime.png,sprite,basic enemy,128KB,
+Art/Enemies/goblin.png,sprite,basic enemy,128KB,
+Art/Props/health_potion.png,sprite,item icon,32KB,
+Art/UI/hud.png,sprite,HUD elements,64KB,
+Audio/Music/hub_theme.ogg,audio,hub background music,2MB,loop
+Audio/Music/biome_a_theme.ogg,audio,biome A BGM,3MB,loop
+Audio/SFX/jump.wav,audio,player jump,64KB,
+Audio/SFX/hit.wav,audio,combat hit,64KB,
+Fonts/main.ttf,font,ui text,50KB,
+Levels/biome_a_layout.json,json,room graph for biome A,10KB,
+Levels/boss_layout.json,json,boss arena layout,5KB,
+Localization/strings.csv,csv,localized strings,20KB,
