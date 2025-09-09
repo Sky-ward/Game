@@ -4,6 +4,9 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List, Optional, TYPE_CHECKING
 
+
+
+
 from .enemy import Enemy
 from .weapon import Weapon
 
@@ -30,6 +33,9 @@ class Player:
             nx, ny = level.clamp_position(nx, ny)
         self.x, self.y = nx, ny
 
+
+
+
     def take_damage(self, dmg: int) -> int:
         """Apply damage after defense and return actual damage dealt."""
         actual = max(1, dmg - self.defense)
@@ -49,6 +55,9 @@ class Player:
     def heal(self, amount: int) -> None:
         """Restore hit points up to maximum."""
         self.hp = min(self.max_hp, self.hp + amount)
+
+
+
 
     def attack_enemy(self, enemy: Enemy) -> int:
         """Attack an enemy using base attack plus equipped weapon."""
