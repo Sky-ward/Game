@@ -1,12 +1,27 @@
 
+"""Player entity with movement, inventory and combat utilities."""
+
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import List, Optional, TYPE_CHECKING, Union
 
+
+from .enemy import Enemy
+from .items import Consumable
+from .weapon import Weapon
+from .skills import Skill
+
+if TYPE_CHECKING:  # pragma: no cover - for type checking only
+    from .level import Level
+
+
+
 from .weapon import Weapon
 from .items import Consumable
 from .skills import Skill
+
 
 Item = Union[Weapon, Consumable]
 
@@ -26,10 +41,20 @@ class Player:
     # Inventory can store both weapons and consumables.
     inventory: List[Item] = field(default_factory=list)
 
+    skills: List[Skill] = field(default_factory=list)
+
+    # ------------------------------------------------------------------ movement
+    def move(self, dx: int, dy: int, level: Optional["Level"] = None) -> None:
+        """Move player by ``dx``/``dy`` applying skill modifiers."""
+
+
+
         for skill in list(self.skills):
             dx, dy = skill.on_move(self, dx, dy)
             if skill.tick():
                 self.skills.remove(skill)
+
+
 
         nx, ny = self.x + dx, self.y + dy
         if level:
@@ -37,8 +62,23 @@ class Player:
         self.x, self.y = nx, ny
 
 
+    # ------------------------------------------------------------------- combat
+    def attack_enemy(self, enemy: Enemy) -> int:
+        """Attack an enemy and return actual damage dealt."""
+        dmg = self.attack + (self.weapon.damage if self.weapon else 0)
+        for skill in list(self.skills):
+            dmg = skill.on_combat(self, dmg)
+            if skill.tick():
+                self.skills.remove(skill)
+        return enemy.take_damage(dmg)
+
+    def take_damage(self, dmg: int) -> int:
+        """Apply incoming damage after defense and return the result."""
+
+
     def take_damage(self, dmg: int) -> int:
         """Apply incoming ``dmg`` after defense and return actual damage dealt."""
+
         actual = max(1, dmg - self.defense)
         self.hp -= actual
         return actual
@@ -46,6 +86,11 @@ class Player:
     def heal(self, amount: int) -> None:
         """Restore hit points up to ``max_hp``."""
         self.hp = min(self.max_hp, self.hp + amount)
+
+
+    # ---------------------------------------------------------- inventory utils
+    def pick_up(self, item: Item) -> None:
+        """Add an item to the inventory if not already present."""
 
     def attack_enemy(self, enemy: Enemy) -> int:
         """Attack an enemy using base attack, weapon damage and skills."""
@@ -65,6 +110,7 @@ class Player:
     # -- inventory ---------------------------------------------------------------
     def pick_up(self, item: Item) -> None:
 
+
         if item not in self.inventory:
             self.inventory.append(item)
 
@@ -82,5 +128,7 @@ class Player:
             self.inventory.remove(item)
         elif isinstance(item, Weapon):
             self.equip(item)
+
+
 
 
