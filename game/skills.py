@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""Skill system with temporary effects applied to the player."""
+
 from dataclasses import dataclass
 from typing import Tuple
 

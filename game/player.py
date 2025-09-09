@@ -1,4 +1,3 @@
-"""Player entity with movement, inventory and combat utilities."""
 
 from __future__ import annotations
 
@@ -8,11 +7,6 @@ from typing import List, Optional, TYPE_CHECKING, Union
 from .weapon import Weapon
 from .items import Consumable
 from .skills import Skill
-from .enemy import Enemy
-
-if TYPE_CHECKING:  # pragma: no cover - for type checking only
-    from .level import Level
-
 
 Item = Union[Weapon, Consumable]
 
@@ -32,13 +26,6 @@ class Player:
     # Inventory can store both weapons and consumables.
     inventory: List[Item] = field(default_factory=list)
 
-    # Active temporary skill effects.
-    skills: List[Skill] = field(default_factory=list)
-
-    def move(self, dx: int, dy: int, level: Optional["Level"] = None) -> None:
-        """Move the player by ``dx``/``dy`` optionally clamping to level bounds."""
-
-        # Apply movement modifying skills and tick their duration.
         for skill in list(self.skills):
             dx, dy = skill.on_move(self, dx, dy)
             if skill.tick():
@@ -49,15 +36,15 @@ class Player:
             nx, ny = level.clamp_position(nx, ny)
         self.x, self.y = nx, ny
 
-    # -- combat -----------------------------------------------------------------
+
     def take_damage(self, dmg: int) -> int:
-        """Apply damage after defense and return the actual damage dealt."""
+        """Apply incoming ``dmg`` after defense and return actual damage dealt."""
         actual = max(1, dmg - self.defense)
         self.hp -= actual
         return actual
 
     def heal(self, amount: int) -> None:
-        """Restore hit points up to the maximum."""
+        """Restore hit points up to ``max_hp``."""
         self.hp = min(self.max_hp, self.hp + amount)
 
     def attack_enemy(self, enemy: Enemy) -> int:
@@ -77,12 +64,12 @@ class Player:
 
     # -- inventory ---------------------------------------------------------------
     def pick_up(self, item: Item) -> None:
-        """Add an item to the inventory if not already present."""
+
         if item not in self.inventory:
             self.inventory.append(item)
 
     def equip(self, weapon: Weapon) -> None:
-        """Equip a weapon that is already in the inventory."""
+        """Equip a ``weapon`` that is already in the inventory."""
         if weapon in self.inventory:
             self.weapon = weapon
 
@@ -95,4 +82,5 @@ class Player:
             self.inventory.remove(item)
         elif isinstance(item, Weapon):
             self.equip(item)
+
 
