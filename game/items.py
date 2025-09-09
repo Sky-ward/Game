@@ -17,10 +17,17 @@ class Consumable:
     heal: int = 0
     damage: int = 0
 
-    def use(self, player: Player) -> None:
-        """Apply the consumable's effect to ``player``."""
+    def use(self, player: "Player") -> None:
+        """Apply healing or damage to ``player``."""
         if self.heal:
             player.heal(self.heal)
         if self.damage:
             player.take_damage(self.damage)
+
+
+class Potion(Consumable):
+    """Simple healing potion used as an example consumable."""
+
+    def __init__(self, heal: int = 20, name: str = "Potion") -> None:
+        super().__init__(name=name, heal=heal)
 
