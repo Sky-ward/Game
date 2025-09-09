@@ -1,4 +1,3 @@
-
 """Player entity with basic movement, inventory and combat helpers."""
 from __future__ import annotations
 
@@ -6,13 +5,13 @@ from dataclasses import dataclass, field
 from typing import List, Optional, TYPE_CHECKING
 
 
+
+
 from .enemy import Enemy
 from .weapon import Weapon
 
-
 if TYPE_CHECKING:  # pragma: no cover - for type checking only
     from .level import Level
-
 
 
 @dataclass
@@ -21,13 +20,11 @@ class Player:
     y: int
 
     max_hp: int = 100
-
     hp: int = 100
     attack: int = 10
     defense: int = 5
     weapon: Optional[Weapon] = None
     inventory: List[Weapon] = field(default_factory=list)
-
 
     def move(self, dx: int, dy: int, level: Optional[Level] = None) -> None:
         """Move player by delta and optionally clamp to level bounds."""
@@ -37,6 +34,8 @@ class Player:
         self.x, self.y = nx, ny
 
 
+
+
     def take_damage(self, dmg: int) -> int:
         """Apply damage after defense and return actual damage dealt."""
         actual = max(1, dmg - self.defense)
@@ -44,7 +43,6 @@ class Player:
         return actual
 
     def pick_up(self, weapon: Weapon) -> None:
-
         """Add a weapon to inventory without equipping."""
         if weapon not in self.inventory:
             self.inventory.append(weapon)
@@ -57,6 +55,8 @@ class Player:
     def heal(self, amount: int) -> None:
         """Restore hit points up to maximum."""
         self.hp = min(self.max_hp, self.hp + amount)
+
+
 
 
     def attack_enemy(self, enemy: Enemy) -> int:
