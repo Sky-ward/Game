@@ -1,17 +1,21 @@
 __pycache__/
 *.pyc
+
 # Unity
-UnityGame/[Ll]ibrary/
-UnityGame/[Bb]uild/
-UnityGame/[Oo]bj/
-UnityGame/[Ll]ogs/
-UnityGame/[Uu]serSettings/
+/UnityGame/Library/
+/UnityGame/Build/
+/UnityGame/Obj/
+/UnityGame/Logs/
+/UnityGame/UserSettings/
+
+# Ignore real art/audio/third-party assets but keep placeholders
 UnityGame/Assets/Art/*
-UnityGame/Assets/Audio/*
-UnityGame/Assets/ThirdParty/*
-!UnityGame/Assets/Art/Placeholders/.keep
-!UnityGame/Assets/Audio/Placeholders/.keep
-!UnityGame/Assets/ThirdParty/.keep
 !UnityGame/Assets/Art/Placeholders/
+!UnityGame/Assets/Art/Placeholders/.keep
+UnityGame/Assets/Audio/*
 !UnityGame/Assets/Audio/Placeholders/
+!UnityGame/Assets/Audio/Placeholders/.keep
+UnityGame/Assets/ThirdParty/*
 !UnityGame/Assets/ThirdParty/
+!UnityGame/Assets/ThirdParty/.keep
+

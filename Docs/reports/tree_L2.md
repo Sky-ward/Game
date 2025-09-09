@@ -1,0 +1,18 @@
+- .github/
+  - PULL_REQUEST_TEMPLATE.md
+  - workflows
+- .gitignore
+- Docs/
+  - assets_replace_guide.md
+  - reports
+- GDD.md
+- README.md
+- UnityGame/
+  - Assets
+  - Packages
+  - ProjectSettings
+- _archive_python/
+  - assets
+  - game
+  - main.py
+  - tests
