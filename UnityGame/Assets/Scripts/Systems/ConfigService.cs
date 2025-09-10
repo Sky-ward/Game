@@ -5,22 +5,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Text.Json;
+
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
 
+
 [CreateAssetMenu(menuName = "Configs/ConfigService")]
 public class ConfigService : ScriptableObject
 {
+
     public static ConfigService Instance { get; private set; }
 
     public static event Action OnConfigsReloaded;
+
 
     private Dictionary<string, EnemyConfig> _enemies;
     private Dictionary<string, ItemConfig> _items;
     private RoomArchetypesConfig _roomArchetypes;
     private Dictionary<string, Dictionary<string, List<WaveSpawnConfig>>> _waves;
     private List<ProgressionLevel> _progression;
+
 
     private void Awake()
     {
@@ -59,13 +64,16 @@ public class ConfigService : ScriptableObject
     {
         await InitializeAsync();
         OnConfigsReloaded?.Invoke();
+
     }
 
     public EnemyConfig GetEnemy(string id)
     {
         if (_enemies != null && _enemies.TryGetValue(id, out var config))
             return config;
+
         Log.Warn($"Enemy config for '{id}' not found.");
+
         return null;
     }
 
@@ -73,7 +81,9 @@ public class ConfigService : ScriptableObject
     {
         if (_items != null && _items.TryGetValue(id, out var config))
             return config;
+
         Log.Warn($"Item config for '{id}' not found.");
+
         return null;
     }
 
@@ -81,7 +91,9 @@ public class ConfigService : ScriptableObject
     {
         if (_waves != null && _waves.TryGetValue(biome, out var biomeWaves) && biomeWaves.TryGetValue(waveId, out var wave))
             return wave;
+
         Log.Warn($"Wave config '{biome}/{waveId}' not found.");
+
         return null;
     }
 
@@ -89,7 +101,9 @@ public class ConfigService : ScriptableObject
 
     public IEnumerable<ProgressionLevel> GetProgression() => _progression;
 
+
     public async Task<T> LoadConfigAsync<T>(string path, Func<T, int> countFunc, string name) where T : IVersioned
+
     {
         string text = null;
         try
@@ -104,6 +118,7 @@ public class ConfigService : ScriptableObject
         catch { }
 
         if (text == null)
+
         {
             var textAsset = Resources.Load<TextAsset>(path);
             if (textAsset != null)
@@ -126,6 +141,7 @@ public class ConfigService : ScriptableObject
             int count = countFunc != null ? countFunc(data) : 0;
             Log.Info($"[Config] {name} v{data.version} #{hash} loaded ({count} entries)");
             return data;
+
         }
         catch (Exception e)
         {
@@ -133,6 +149,7 @@ public class ConfigService : ScriptableObject
             throw;
         }
     }
+
 
     private string ComputeHash(string text)
     {
@@ -142,6 +159,7 @@ public class ConfigService : ScriptableObject
         for (int i = 0; i < 4; i++)
             sb.Append(bytes[i].ToString("x2"));
         return sb.ToString();
+
     }
 }
 
@@ -163,6 +181,7 @@ public class ItemConfig
     public string type;
     public int value;
     public int heal;
+
     public float drop_rate;
 }
 
@@ -171,6 +190,7 @@ public class RoomArchetypesConfig : IVersioned
 { 
     public int version;
     public List<BiomeRooms> biomes; 
+
 }
 
 [Serializable]
@@ -205,6 +225,7 @@ public class ProgressionLevel
     public int xp;
 }
 
+
 public interface IVersioned
 {
     int version { get; }
@@ -237,4 +258,5 @@ public class ProgressionConfig : IVersioned
     public int version;
     public List<ProgressionLevel> levels;
 }
+
 
