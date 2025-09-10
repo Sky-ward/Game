@@ -24,3 +24,8 @@ The repository uses GitHub Actions for automated checks:
 - `python-app.yml` runs the archived Python tests.
 - `config-validate.yml` runs Unity in batch mode to execute `Game.ConfigValidation.Run` and fails when configuration data is inconsistent (missing enemy ids, invalid room types, non-monotonic progression, etc.).
 
+  - Requires a `UNITY_LICENSE` secret to activate Unity.
+  - The `unityVersion` must match the project (Unity 2022.3.x LTS).
+  - The command uses `-logFile -` so logs appear in the workflow output for easier debugging.
+
+

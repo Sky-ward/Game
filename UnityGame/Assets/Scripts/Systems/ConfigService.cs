@@ -71,9 +71,7 @@ public class ConfigService : ScriptableObject
     {
         if (_enemies != null && _enemies.TryGetValue(id, out var config))
             return config;
-
         Log.Warn($"Enemy config for '{id}' not found.");
-
         return null;
     }
 
@@ -81,9 +79,7 @@ public class ConfigService : ScriptableObject
     {
         if (_items != null && _items.TryGetValue(id, out var config))
             return config;
-
         Log.Warn($"Item config for '{id}' not found.");
-
         return null;
     }
 
@@ -91,9 +87,7 @@ public class ConfigService : ScriptableObject
     {
         if (_waves != null && _waves.TryGetValue(biome, out var biomeWaves) && biomeWaves.TryGetValue(waveId, out var wave))
             return wave;
-
         Log.Warn($"Wave config '{biome}/{waveId}' not found.");
-
         return null;
     }
 
@@ -101,10 +95,9 @@ public class ConfigService : ScriptableObject
 
     public IEnumerable<ProgressionLevel> GetProgression() => _progression;
 
-
     public async Task<T> LoadConfigAsync<T>(string path, Func<T, int> countFunc, string name) where T : IVersioned
-
     {
+
         string text = null;
         try
         {
@@ -136,12 +129,12 @@ public class ConfigService : ScriptableObject
         var hash = ComputeHash(text);
 
         try
+
         {
             var data = JsonSerializer.Deserialize<T>(text);
             int count = countFunc != null ? countFunc(data) : 0;
             Log.Info($"[Config] {name} v{data.version} #{hash} loaded ({count} entries)");
             return data;
-
         }
         catch (Exception e)
         {
@@ -149,7 +142,6 @@ public class ConfigService : ScriptableObject
             throw;
         }
     }
-
 
     private string ComputeHash(string text)
     {
