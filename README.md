@@ -19,13 +19,25 @@ For high‑level design notes refer to [GDD.md](GDD.md).
 
 ## Continuous Integration
 
-The repository uses GitHub Actions for automated checks:
+The repository uses GitHub Actions for automated checks. Both Unity workflows rely on `game-ci/unity-actions/setup@v2` and `game-ci/unity-actions/activate@v2`; omitting the sub‑action (e.g. `game-ci/unity-actions@v2`) will fail with *unable to find version v2*.
 
 - `python-app.yml` runs the archived Python tests.
 - `config-validate.yml` runs Unity in batch mode to execute `Game.ConfigValidation.Run` and fails when configuration data is inconsistent (missing enemy ids, invalid room types, non-monotonic progression, etc.).
 
-  - Requires a `UNITY_LICENSE` secret to activate Unity.
+  - Requires a `UNITY_LICENSE` secret to activate Unity. If the secret is missing the "Activate Unity" step fails and the logs will note that the license key was not supplied.
   - The `unityVersion` must match the project (Unity 2022.3.x LTS).
-  - The command uses `-logFile -` so logs appear in the workflow output for easier debugging.
+  - Logs are printed to the workflow using `-logFile -` for easier debugging.
+  - Common failures: missing license, incorrect Unity version or invalid config data.
+  - To run locally:
+
+    ```bash
+    unity-editor -batchmode -projectPath UnityGame -executeMethod Game.ConfigValidation.Run -quit -nographics -logFile -
+    ```
+
+- `unity-build.yml` produces a downloadable Windows x86_64 build via `game-ci/unity-builder`.
+
+  - Requires `UNITY_LICENSE` like the validate job.
+  - Built artifacts are available from the workflow run page.
+  - Failures often relate to license activation or missing build support modules.
 
 
