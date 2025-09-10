@@ -26,6 +26,18 @@ The repository uses GitHub Actions for automated checks:
 
   - Requires a `UNITY_LICENSE` secret to activate Unity.
   - The `unityVersion` must match the project (Unity 2022.3.x LTS).
-  - The command uses `-logFile -` so logs appear in the workflow output for easier debugging.
+  - Logs are printed to the workflow using `-logFile -` for easier debugging.
+  - Common failures: missing license, incorrect Unity version or invalid config data.
+  - To run locally:
+
+    ```bash
+    unity-editor -batchmode -projectPath UnityGame -executeMethod Game.ConfigValidation.Run -quit -nographics -logFile -
+    ```
+
+- `unity-build.yml` produces a downloadable Windows x86_64 build via `game-ci/unity-builder`.
+
+  - Requires `UNITY_LICENSE` like the validate job.
+  - Built artifacts are available from the workflow run page.
+  - Failures often relate to license activation or missing build support modules.
 
 
