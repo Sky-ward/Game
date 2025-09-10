@@ -10,12 +10,26 @@ public static class ConfigValidator
 
     public static List<string> Validate(
         Dictionary<string, EnemyConfig> enemies,
+
+        Dictionary<string, ItemConfig> items,
+
         RoomArchetypesConfig rooms,
         Dictionary<string, Dictionary<string, List<WaveSpawnConfig>>> waves,
         List<ProgressionLevel> progression)
     {
         var errors = new List<string>();
         var enemyIds = enemies.Keys.ToHashSet();
+
+
+        if (items != null)
+        {
+            foreach (var item in items.Values)
+            {
+                if (item.drop_rate < 0 || item.drop_rate > 1)
+                    errors.Add($"Item {item.id} has drop_rate outside [0,1]");
+            }
+        }
+
 
         if (waves != null)
         {

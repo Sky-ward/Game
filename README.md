@@ -17,3 +17,10 @@ See `UnityGame/Assets/Docs/Readme_tech.md` for project layout and `Docs/assets_r
 
 For high‑level design notes refer to [GDD.md](GDD.md).
 
+## Continuous Integration
+
+The repository uses GitHub Actions for automated checks:
+
+- `python-app.yml` runs the archived Python tests.
+- `config-validate.yml` runs Unity in batch mode to execute `Game.ConfigValidation.Run` and fails when configuration data is inconsistent (missing enemy ids, invalid room types, non-monotonic progression, etc.).
+
