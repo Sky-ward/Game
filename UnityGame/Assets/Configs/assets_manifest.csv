@@ -18,4 +18,4 @@ Levels/wave_configs.json,json,wave definitions per biome,1KB,drives enemy spawn 
 Enemies/enemies.json,json,enemy stats,1KB,drives enemy attributes
 Items/items.json,json,item definitions,1KB,drives loot and consumables
 Progression/progression.json,json,experience progression,1KB,leveling curve
-README.md,md,config documentation,1KB,field reference
+
