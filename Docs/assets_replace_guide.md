@@ -1,12 +1,18 @@
 # Asset Replacement Guide
 
-This repository commits **no binary assets**. All real art, audio and third‑party libraries must be supplied outside of version control or via Git LFS on a separate branch.
+This repository intentionally omits binary game assets such as images, audio, and 3D models. Use this guide to replace placeholder assets with production-ready content.
 
-1. Check `UnityGame/Assets/Configs/assets_manifest.csv` for required files.
-2. Place the asset at the manifest path under `UnityGame/Assets`.
-3. Import using Unity's recommended settings for the asset type.
-4. Add the asset to the appropriate Addressables group.
-5. Commit using Git LFS or exclude from commits when working on the main branch.
+## Workflow
+1. Place new assets under `Art/` or `Audio/` as appropriate.
+2. Maintain directory structure referenced in `Configs/assets_manifest.csv`.
+3. Import assets into Unity using the recommended settings below.
+4. Commit only text-based metadata; **do not** commit binary files. Supply them separately via the asset delivery channel.
 
-Keep `.keep` files intact for empty placeholder folders.
+## Recommended Import Settings
+- **Textures**: Set compression to `LZ4`, max size 2048, use mipmaps only when required.
+- **Audio**: Compress to Vorbis, quality 70, load type `Streaming` for music.
+- **Models**: Apply scale factor 1, generate lightmap UVs if needed.
+
+## Placeholder Policy
+If an asset is missing, the game should fall back to a neutral placeholder (e.g., grey box, silent clip). Log a warning but continue running.
 
