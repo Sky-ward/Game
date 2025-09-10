@@ -1,0 +1,9 @@
+{"biomes":[
+  {"id":"Biome_A","rooms":[
+    {"type":"Combat","weight":55,"waves_min":2,"waves_max":3},
+    {"type":"Elite","weight":10},
+    {"type":"Reward","weight":10},
+    {"type":"Shop","weight":10},
+    {"type":"Rest","weight":15}
+  ],"hidden_room_chance":0.2}
+]}
