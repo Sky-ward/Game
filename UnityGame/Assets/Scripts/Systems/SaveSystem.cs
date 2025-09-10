@@ -3,8 +3,9 @@ using System.IO;
 using System.Text.Json;
 using UnityEngine;
 
-public static class SaveSystem
+namespace Game.Save
 {
+
     public static string SaveDirectory = Path.Combine(Application.persistentDataPath, "saves");
     public static SaveData CurrentData = new SaveData();
     private static readonly JsonSerializerOptions options = new JsonSerializerOptions { IncludeFields = true };
@@ -23,10 +24,19 @@ public static class SaveSystem
             File.WriteAllText(GetSlotPath(slot), json);
         }
         catch (Exception e)
+
         {
-            Debug.LogError($"Save failed: {e.Message}");
+            try
+            {
+                var json = JsonSerializer.Serialize(CurrentData);
+                File.WriteAllText(SavePath, json);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Save failed: {e.Message}");
+            }
         }
-    }
+
 
     public static void Save() => Save(CurrentData.slot);
 
@@ -36,11 +46,23 @@ public static class SaveSystem
         try
         {
             if (!File.Exists(path))
+
             {
-                Debug.LogWarning("Save file not found");
-                CurrentData = new SaveData();
-                return;
+                if (!File.Exists(SavePath))
+                {
+                    Debug.LogWarning("Save file not found");
+                    CurrentData = new SaveData();
+                    return;
+                }
+                var json = File.ReadAllText(SavePath);
+                CurrentData = JsonSerializer.Deserialize<SaveData>(json) ?? new SaveData();
             }
+            catch (Exception e)
+            {
+                Debug.LogError($"Load failed: {e.Message}");
+                CurrentData = new SaveData();
+            }
+
             var json = File.ReadAllText(path);
             CurrentData = JsonSerializer.Deserialize<SaveData>(json, options) ?? new SaveData();
             CurrentData.Migrate();
@@ -49,6 +71,7 @@ public static class SaveSystem
         {
             Debug.LogError($"Load failed: {e.Message}");
             CurrentData = new SaveData();
+
         }
     }
 

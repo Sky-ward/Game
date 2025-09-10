@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider2D))]
 public class Damage : MonoBehaviour
 {
-    [SerializeField] private int amount = 1;
-    public int Amount
+    [SerializeField] private float amount = 1f;
+    public float Amount
     {
         get => amount;
         set => amount = value;
@@ -19,12 +19,12 @@ public class Damage : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         DealDamage(other.gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         DealDamage(collision.gameObject);
     }

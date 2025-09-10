@@ -31,10 +31,15 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy(EnemyConfig cfg)
     {
-        var go = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        go.name = cfg.id;
-        var enemy = go.AddComponent<EnemyPlaceholder>();
-        enemy.Init(cfg.hp, () => { _alive--; _kills++; });
+        var go = PoolManager.Instance.Get(cfg.id, () =>
+        {
+            var obj = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            obj.name = cfg.id;
+            obj.AddComponent<EnemyPlaceholder>();
+            return obj;
+        });
+        var enemy = go.GetComponent<EnemyPlaceholder>();
+        enemy.Init(cfg.id, cfg.hp, () => { _alive--; _kills++; });
         _alive++;
     }
 

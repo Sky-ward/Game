@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-[Serializable]
-public class SaveData
+namespace Game.Save
 {
     public const int CurrentVersion = 1;
 
@@ -24,13 +23,15 @@ public class SaveData
     }
 }
 
-[Serializable]
-public class PlayerStats
-{
-    public int level;
-    public int health;
-    public int experience;
-}
+
+    [Serializable]
+    public class SavePlayerStats
+    {
+        public int level;
+        public int health;
+        public int experience;
+    }
+
 
 [Serializable]
 public class PlayerProgress
