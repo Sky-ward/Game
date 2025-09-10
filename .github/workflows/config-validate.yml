@@ -1,0 +1,19 @@
+name: config-validate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+      - name: Run config validation
+        run: |
+          echo "Running config validation"
+          Unity -batchmode -projectPath UnityGame -executeMethod ConfigValidation.Run -quit -nographics

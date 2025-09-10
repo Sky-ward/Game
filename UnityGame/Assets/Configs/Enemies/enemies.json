@@ -1,0 +1,5 @@
+{"version":1,"enemies":[
+  {"id":"grunt","hp":12,"speed":2.5,"attack":3,"ai":"melee_chase"},
+  {"id":"archer","hp":16,"speed":1.8,"attack":4,"ai":"ranged_kite","projectile_speed":6},
+  {"id":"brute","hp":80,"speed":1.2,"attack":10,"ai":"melee_charge"}
+]}

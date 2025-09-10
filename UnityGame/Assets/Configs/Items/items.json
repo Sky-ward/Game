@@ -1,0 +1,4 @@
+{"version":1,"items":[
+  {"id":"coin","type":"currency","value":1,"drop_rate":0.5},
+  {"id":"potion_small","type":"consumable","heal":20,"drop_rate":0.1}
+]}
