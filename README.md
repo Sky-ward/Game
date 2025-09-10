@@ -15,7 +15,11 @@ No binary assets are committed. All art, audio and third‑party files are repre
 
 See `UnityGame/Assets/Docs/Readme_tech.md` for project layout and `Docs/assets_replace_guide.md` for guidance on importing real assets.
 
-For high‑level design notes refer to [GDD.md](GDD.md).
+For high-level design notes refer to [GDD.md](GDD.md).
+
+## Roadmap
+
+Development stages and progress are tracked in [Docs/roadmap.md](Docs/roadmap.md).
 
 ## CI / Build
 
