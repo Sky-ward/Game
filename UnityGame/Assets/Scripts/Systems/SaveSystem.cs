@@ -3,41 +3,44 @@ using System.IO;
 using System.Text.Json;
 using UnityEngine;
 
-public static class SaveSystem
+namespace Game.Save
 {
-    public static string SavePath = Path.Combine(Application.persistentDataPath, "save.json");
-    public static SaveData CurrentData = new SaveData();
-
-    public static void Save()
+    public static class SaveSystem
     {
-        try
-        {
-            var json = JsonSerializer.Serialize(CurrentData);
-            File.WriteAllText(SavePath, json);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Save failed: {e.Message}");
-        }
-    }
+        public static string SavePath = Path.Combine(Application.persistentDataPath, "save.json");
+        public static SaveData CurrentData = new SaveData();
 
-    public static void Load()
-    {
-        try
+        public static void Save()
         {
-            if (!File.Exists(SavePath))
+            try
             {
-                Debug.LogWarning("Save file not found");
-                CurrentData = new SaveData();
-                return;
+                var json = JsonSerializer.Serialize(CurrentData);
+                File.WriteAllText(SavePath, json);
             }
-            var json = File.ReadAllText(SavePath);
-            CurrentData = JsonSerializer.Deserialize<SaveData>(json) ?? new SaveData();
+            catch (Exception e)
+            {
+                Debug.LogError($"Save failed: {e.Message}");
+            }
         }
-        catch (Exception e)
+
+        public static void Load()
         {
-            Debug.LogError($"Load failed: {e.Message}");
-            CurrentData = new SaveData();
+            try
+            {
+                if (!File.Exists(SavePath))
+                {
+                    Debug.LogWarning("Save file not found");
+                    CurrentData = new SaveData();
+                    return;
+                }
+                var json = File.ReadAllText(SavePath);
+                CurrentData = JsonSerializer.Deserialize<SaveData>(json) ?? new SaveData();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Load failed: {e.Message}");
+                CurrentData = new SaveData();
+            }
         }
     }
 }
