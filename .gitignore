@@ -1,6 +1,10 @@
 __pycache__/
 *.pyc
 
+# .NET build outputs
+bin/
+obj/
+
 # Unity
 /UnityGame/Library/
 /UnityGame/Build/
