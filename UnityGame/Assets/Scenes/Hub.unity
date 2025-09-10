@@ -14,3 +14,25 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
+--- !u!1 &1000
+GameObject:
+  m_Name: UpgradeTerminal
+  m_Component:
+  - component: {fileID: 1001}
+  - component: {fileID: 1002}
+  m_Layer: 0
+  m_TagString: Untagged
+  m_Active: 1
+--- !u!4 &1001
+Transform:
+  m_GameObject: {fileID: 1000}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+--- !u!114 &1002
+MonoBehaviour:
+  m_GameObject: {fileID: 1000}
+  m_Enabled: 1
+  m_Script: {fileID: 11500000, guid: dad453fbf451460abf07da703259c5be, type: 3}
+  stats: {fileID: 11400000, guid: bce7baa888564f2dbfa7820ffc51775d, type: 2}
+  baseUpgradeCost: 10
