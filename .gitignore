@@ -19,3 +19,20 @@ UnityGame/Assets/ThirdParty/*
 !UnityGame/Assets/ThirdParty/
 !UnityGame/Assets/ThirdParty/.keep
 
+# Unity generated folders at repo root
+Library/
+Build/
+Obj/
+Logs/
+UserSettings/
+
+# Root-level asset folders (placeholders only)
+Art/*
+!Art/Placeholders/
+!Art/Placeholders/.keep
+Audio/*
+!Audio/Placeholders/
+!Audio/Placeholders/.keep
+ThirdParty/*
+!ThirdParty/
+!ThirdParty/.keep

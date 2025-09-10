@@ -1,0 +1,105 @@
+{
+  "unity_root": "UnityGame/",
+  "scenes": {
+    "Bootstrap": true,
+    "Hub": true,
+    "Biome_A": true,
+    "Biome_B": true,
+    "Biome_C": true,
+    "Boss": true
+  },
+  "scripts": {
+    "GameBootstrap.cs": true,
+    "ConfigService.cs": true,
+    "PlaceholderFactory.cs": true
+  },
+  "configs": {
+    "levels": true,
+    "enemies": true,
+    "items": true,
+    "localization": true,
+    "lists": {
+      "room_archetypes": false,
+      "wave_configs": false,
+      "loot_table": false,
+      "shop_pools": false,
+      "progression": false
+    }
+  },
+  "localization": {
+    "exists": true,
+    "file": "Assets/Configs/Localization/strings.csv"
+  },
+  "content_counts": {
+    "biomes": 3,
+    "room_archetypes": 0,
+    "enemies_basic": 0,
+    "enemies_elite": 0,
+    "bosses": 0,
+    "weapons": 0,
+    "skills": 0,
+    "perks": 0
+  },
+  "gameplay_loop": {
+    "closed": false,
+    "breakpoints": [
+      "no_enemy_configs",
+      "no_progression_system"
+    ]
+  },
+  "estimated_playtime_min": 5,
+  "stability": {
+    "object_pooling": false,
+    "addressables_release": false,
+    "log_level_control": false
+  },
+  "ci_cd": {
+    "unity_build_workflow": false,
+    "pr_template": true,
+    "qa_docs": false
+  },
+  "python_legacy": {
+    "exists": true,
+    "paths": [
+      "_archive_python/game/__init__.py",
+      "_archive_python/game/enemy.py",
+      "_archive_python/game/i18n.py",
+      "_archive_python/game/items.py",
+      "_archive_python/game/level.py",
+      "_archive_python/game/player.py",
+      "_archive_python/game/progression.py",
+      "_archive_python/game/room.py",
+      "_archive_python/game/skills.py",
+      "_archive_python/game/ui/__init__.py",
+      "_archive_python/game/ui/hud.py",
+      "_archive_python/game/ui/inventory.py",
+      "_archive_python/game/weapon.py",
+      "_archive_python/main.py",
+      "_archive_python/tests/__init__.py",
+      "_archive_python/tests/test_combat.py",
+      "_archive_python/tests/test_enemy.py",
+      "_archive_python/tests/test_enemy_behaviors.py",
+      "_archive_python/tests/test_i18n.py",
+      "_archive_python/tests/test_items.py",
+      "_archive_python/tests/test_level.py",
+      "_archive_python/tests/test_level_generation.py",
+      "_archive_python/tests/test_player.py",
+      "_archive_python/tests/test_progression.py",
+      "_archive_python/tests/test_skills.py",
+      "_archive_python/tests/test_ui.py",
+      "_archive_python/tests/test_weapon.py"
+    ]
+  },
+  "risks_top": [
+    "empty config directories",
+    "no enemy/weapon data",
+    "no save or progression system",
+    "minimal localization"
+  ],
+  "recommendations_top": [
+    "implement core loop and result screens",
+    "populate level/enemy/item configs",
+    "add save system and meta progression",
+    "set up Unity CI workflow"
+  ]
+}
