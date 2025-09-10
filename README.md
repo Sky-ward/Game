@@ -15,7 +15,7 @@ No binary assets are committed. All art, audio and third‑party files are repre
 
 See `UnityGame/Assets/Docs/Readme_tech.md` for project layout and `Docs/assets_replace_guide.md` for guidance on importing real assets.
 
-For high‑level design notes refer to [GDD.md](GDD.md).
+For high‑level design notes refer to [GDD.md](GDD.md) (Chinese) or [GDD_en.md](GDD_en.md) (English). Both files should remain synchronized.
 
 ## CI / Build
 
@@ -32,4 +32,13 @@ To build or validate the Unity project:
 3. Workflows `config-validate.yml` and `unity-build.yml` run on pull requests and pushes.
 
 Only `unity-build.yml` requires the `UNITY_LICENSE` secret. `config-validate.yml` should pass without it.
+
+## Translation Workflow
+
+Design documentation is maintained in Chinese and English:
+
+1. Update both [GDD.md](GDD.md) and [GDD_en.md](GDD_en.md) in the same commit.
+2. Translation tools or AI (e.g. DeepL, ChatGPT) may be used for a first pass.
+3. Manually review and polish the translation to ensure accuracy.
+4. Keep headings, numbering, and structure consistent across languages.
 
