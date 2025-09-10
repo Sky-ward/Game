@@ -6,14 +6,17 @@ using System.Linq;
 using System;
 using System.Text.Json;
 
+
 [CreateAssetMenu(menuName = "Configs/ConfigService")]
 public class ConfigService : ScriptableObject
 {
+
     private Dictionary<string, EnemyConfig> _enemies;
     private Dictionary<string, ItemConfig> _items;
     private RoomArchetypesConfig _roomArchetypes;
     private Dictionary<string, Dictionary<string, List<WaveSpawnConfig>>> _waves;
     private List<ProgressionLevel> _progression;
+
 
     public async Task InitializeAsync()
     {
@@ -31,13 +34,16 @@ public class ConfigService : ScriptableObject
 
         _progression = await LoadConfigAsync<List<ProgressionLevel>>("Configs/Progression/progression.json")
             ?? new List<ProgressionLevel>();
+
     }
 
     public EnemyConfig GetEnemy(string id)
     {
         if (_enemies != null && _enemies.TryGetValue(id, out var config))
             return config;
+
         Debug.LogWarning($"Enemy config for '{id}' not found.");
+
         return null;
     }
 
@@ -45,7 +51,9 @@ public class ConfigService : ScriptableObject
     {
         if (_items != null && _items.TryGetValue(id, out var config))
             return config;
+
         Debug.LogWarning($"Item config for '{id}' not found.");
+
         return null;
     }
 
@@ -53,7 +61,9 @@ public class ConfigService : ScriptableObject
     {
         if (_waves != null && _waves.TryGetValue(biome, out var biomeWaves) && biomeWaves.TryGetValue(waveId, out var wave))
             return wave;
+
         Debug.LogWarning($"Wave config '{biome}/{waveId}' not found.");
+
         return null;
     }
 
@@ -61,7 +71,9 @@ public class ConfigService : ScriptableObject
 
     public IEnumerable<ProgressionLevel> GetProgression() => _progression;
 
+
     public async Task<T> LoadConfigAsync<T>(string path)
+
     {
         string text = null;
         try
@@ -76,6 +88,8 @@ public class ConfigService : ScriptableObject
         catch { }
 
         if (text == null)
+
+
         {
             var textAsset = Resources.Load<TextAsset>(path);
             if (textAsset != null)
@@ -88,7 +102,15 @@ public class ConfigService : ScriptableObject
         {
             Debug.LogWarning($"Config {path} not found, using defaults.");
             return default;
+
         }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to parse config {path}: {e.Message}");
+            throw;
+        }
+    }
+
 
         try
         {
@@ -99,6 +121,7 @@ public class ConfigService : ScriptableObject
             Debug.LogWarning($"Failed to parse config {path}: {e.Message}");
             return default;
         }
+
     }
 }
 
@@ -123,9 +146,11 @@ public class ItemConfig
 }
 
 [Serializable]
+
 public class RoomArchetypesConfig
 {
     public List<BiomeRooms> biomes;
+
 }
 
 [Serializable]
@@ -159,3 +184,4 @@ public class ProgressionLevel
     public int level;
     public int xp;
 }
+

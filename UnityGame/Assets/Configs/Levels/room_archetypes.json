@@ -1,4 +1,6 @@
+
 {"biomes":[
+
   {"id":"Biome_A","rooms":[
     {"type":"Combat","weight":55,"waves_min":2,"waves_max":3},
     {"type":"Elite","weight":10},
