@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="UnityGame/Assets/Scripts/Systems/SaveData.cs" />
+    <Compile Include="UnityGame/Assets/Scripts/Systems/SaveSystem.cs" />
     <Compile Include="UnityGame/Assets/Tests/EditMode/RoomGenerationTests.cs" />
+    <Compile Include="UnityGame/Assets/Tests/EditMode/SaveSystemTests.cs" />
+    <Compile Include="UnityGame/Assets/Tests/EditMode/UnityStubs.cs" />
   </ItemGroup>
 
   <ItemGroup>
