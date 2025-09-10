@@ -17,27 +17,19 @@ See `UnityGame/Assets/Docs/Readme_tech.md` for project layout and `Docs/assets_r
 
 For high‑level design notes refer to [GDD.md](GDD.md).
 
-## Continuous Integration
+## CI / Build
 
-The repository uses GitHub Actions for automated checks. Both Unity workflows rely on `game-ci/unity-actions/setup@v2` and `game-ci/unity-actions/activate@v2`; omitting the sub‑action (e.g. `game-ci/unity-actions@v2`) will fail with *unable to find version v2*.
+This repository uses [GameCI](https://game.ci/) GitHub Actions:
 
-- `python-app.yml` runs the archived Python tests.
-- `config-validate.yml` runs Unity in batch mode to execute `Game.ConfigValidation.Run` and fails when configuration data is inconsistent (missing enemy ids, invalid room types, non-monotonic progression, etc.).
+- [`game-ci/unity-setup@v4`](https://github.com/game-ci/unity-setup)
+- [`game-ci/unity-activate@v2`](https://github.com/game-ci/unity-activate)
+- [`game-ci/unity-builder@v4`](https://github.com/game-ci/unity-builder)
 
-  - Requires a `UNITY_LICENSE` secret to activate Unity. If the secret is missing the "Activate Unity" step fails and the logs will note that the license key was not supplied.
-  - The `unityVersion` must match the project (Unity 2022.3.x LTS).
-  - Logs are printed to the workflow using `-logFile -` for easier debugging.
-  - Common failures: missing license, incorrect Unity version or invalid config data.
-  - To run locally:
+To build or validate the Unity project:
 
-    ```bash
-    unity-editor -batchmode -projectPath UnityGame -executeMethod Game.ConfigValidation.Run -quit -nographics -logFile -
-    ```
+1. Configure `UNITY_LICENSE` under *Settings → Secrets → Actions* (paste the ULF license content).
+2. The Unity version is read from `UnityGame/ProjectSettings/ProjectVersion.txt`.
+3. Workflows `config-validate.yml` and `unity-build.yml` run on pull requests and pushes.
 
-- `unity-build.yml` produces a downloadable Windows x86_64 build via `game-ci/unity-builder`.
-
-  - Requires `UNITY_LICENSE` like the validate job.
-  - Built artifacts are available from the workflow run page.
-  - Failures often relate to license activation or missing build support modules.
-
+The `UNITY_LICENSE` secret is only required for steps that run or build the editor; `config-validate.yml` and `unity-build.yml` will fail with a clear "license not provided" message if it is missing.
 
