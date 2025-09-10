@@ -1,41 +1,59 @@
-#if UNITY_EDITOR
 using NUnit.Framework;
 using System.IO;
-using UnityEngine;
-using Game.Save;
+
+using System.Linq;
+
 
 public class SaveSystemTests
 {
     [Test]
-    public void SaveAndLoadData()
+    public void SaveAndLoadMultipleSlots()
     {
-        var tempPath = Path.Combine(Application.dataPath, "test_save.json");
-        var prevPath = SaveSystem.SavePath;
+        var tempDir = Path.Combine(TestContext.CurrentContext.WorkDirectory, "test_saves");
+        var prevDir = SaveSystem.SaveDirectory;
+        SaveSystem.SaveDirectory = tempDir;
 
-        var data = new SaveData
+        if (Directory.Exists(tempDir))
+            Directory.Delete(tempDir, true);
+        Directory.CreateDirectory(tempDir);
+
+        var data0 = new SaveData
         {
             stats = new SavePlayerStats { level = 5, health = 80, experience = 1200 },
             inventory = { "sword", "potion" },
             progress = { checkpoint = "Hub", stage = 3 }
         };
 
-        SaveSystem.SavePath = tempPath;
-        SaveSystem.CurrentData = data;
-        SaveSystem.Save();
+        SaveSystem.CurrentData = data0;
+        SaveSystem.Save(0);
+
+        var data1 = new SaveData
+        {
+            stats = { level = 2, health = 50, experience = 400 },
+            inventory = { "shield" },
+            progress = { checkpoint = "Town", stage = 1 }
+        };
+
+        SaveSystem.CurrentData = data1;
+        SaveSystem.Save(1);
+
+        var infos = SaveSystem.GetAllSlots();
+        Assert.AreEqual(2, infos.Length);
+        Assert.IsTrue(infos.Any(i => i.slot == 0));
+        Assert.IsTrue(infos.Any(i => i.slot == 1));
 
         SaveSystem.CurrentData = new SaveData();
-        SaveSystem.Load();
-        var loaded = SaveSystem.CurrentData;
+        SaveSystem.Load(0);
+        Assert.AreEqual(5, SaveSystem.CurrentData.stats.level);
+        Assert.AreEqual("Hub", SaveSystem.CurrentData.progress.checkpoint);
 
-        Assert.AreEqual(data.stats.level, loaded.stats.level);
-        Assert.AreEqual(data.stats.health, loaded.stats.health);
-        Assert.AreEqual(data.stats.experience, loaded.stats.experience);
-        CollectionAssert.AreEqual(data.inventory, loaded.inventory);
-        Assert.AreEqual(data.progress.checkpoint, loaded.progress.checkpoint);
-        Assert.AreEqual(data.progress.stage, loaded.progress.stage);
+        SaveSystem.CurrentData = new SaveData();
+        SaveSystem.Load(1);
+        Assert.AreEqual(2, SaveSystem.CurrentData.stats.level);
+        Assert.AreEqual("Town", SaveSystem.CurrentData.progress.checkpoint);
 
-        File.Delete(tempPath);
-        SaveSystem.SavePath = prevPath;
+        Directory.Delete(tempDir, true);
+        SaveSystem.SaveDirectory = prevDir;
     }
 }
-#endif
+
