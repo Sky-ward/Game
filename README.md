@@ -27,9 +27,9 @@ This repository uses [GameCI](https://game.ci/) GitHub Actions:
 
 To build or validate the Unity project:
 
-1. Configure `UNITY_LICENSE` under *Settings → Secrets → Actions* (paste the ULF license content).
+1. Configure `UNITY_LICENSE` under *Settings → Secrets → Actions* (paste the ULF license content). Required for `unity-build.yml`, optional for `config-validate.yml`.
 2. The Unity version is read from `UnityGame/ProjectSettings/ProjectVersion.txt`.
 3. Workflows `config-validate.yml` and `unity-build.yml` run on pull requests and pushes.
 
-The `UNITY_LICENSE` secret is only required for steps that run or build the editor; `config-validate.yml` and `unity-build.yml` will fail with a clear "license not provided" message if it is missing.
+Only `unity-build.yml` requires the `UNITY_LICENSE` secret. `config-validate.yml` should pass without it.
 
