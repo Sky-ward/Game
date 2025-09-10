@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Damage : MonoBehaviour
 {
-    [SerializeField] private int amount = 1;
-    public int Amount
+    [SerializeField] private float amount = 1f;
+    public float Amount
     {
         get => amount;
         set => amount = value;
