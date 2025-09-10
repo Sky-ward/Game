@@ -1,24 +1,24 @@
 {
-  ".github": [
+  ".github/": [
     "PULL_REQUEST_TEMPLATE.md",
-    "workflows"
+    "workflows/"
   ],
   ".gitignore": null,
-  "Docs": [
+  "Docs/": [
     "assets_replace_guide.md",
-    "reports"
+    "reports/"
   ],
   "GDD.md": null,
   "README.md": null,
-  "UnityGame": [
-    "Assets",
-    "Packages",
-    "ProjectSettings"
+  "UnityGame/": [
+    "Assets/",
+    "Packages/",
+    "ProjectSettings/"
   ],
-  "_archive_python": [
-    "assets",
-    "game",
+  "_archive_python/": [
+    "assets/",
+    "game/",
     "main.py",
-    "tests"
+    "tests/"
   ]
 }

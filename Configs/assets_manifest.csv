@@ -1,0 +1,11 @@
+id,type,placeholder,notes
+enemy_melee,prefab,Assets/Prefabs/Enemies/EnemyMelee.prefab,Replace with final melee enemy prefab
+enemy_ranged,prefab,Assets/Prefabs/Enemies/EnemyRanged.prefab,Replace with final ranged enemy prefab
+enemy_charger,prefab,Assets/Prefabs/Enemies/EnemyCharger.prefab,Replace with final charger enemy prefab
+boss_placeholder,prefab,Assets/Prefabs/Bosses/BossDragon.prefab,Replace with final boss asset
+weapon_basic,prefab,Assets/Prefabs/Weapons/BasicGun.prefab,Replace with final weapon model
+hud_font,font,Assets/Fonts/HudFont.ttf,Replace with production font
+background_music,audio,Assets/Audio/Music/BiomeA.ogg,Replace with final soundtrack
+tileset_biome_a,tileset,Assets/Tilesets/BiomeA.asset,Replace with final tileset
+tileset_hub,tileset,Assets/Tilesets/Hub.asset,Replace with final tileset
+vfx_explosion,prefab,Assets/Prefabs/VFX/Explosion.prefab,Replace with final explosion effect
