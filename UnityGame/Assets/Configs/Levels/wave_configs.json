@@ -1,5 +1,7 @@
+
 {"version":1,"biomes":{"Biome_A":{
   "Combat_Tier1":[{"enemy":"grunt","count":5,"spawn_interval":0.5}],
   "Combat_Tier2":[{"enemy":"archer","count":3,"spawn_interval":0.8},{"enemy":"grunt","count":3,"spawn_interval":0.8}],
   "Elite":[{"enemy":"brute","count":1,"spawn_interval":0.0}]
 }}}
+
