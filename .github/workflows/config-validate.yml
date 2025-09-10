@@ -24,6 +24,7 @@ jobs:
         uses: game-ci/unity-actions/setup@v2
         with:
           unityVersion: '2022.3.0f1'
+          cacheUnityInstallation: true
 
       - name: Activate Unity (requires UNITY_LICENSE secret)
         uses: game-ci/unity-actions/activate@v2
@@ -38,4 +39,5 @@ jobs:
             -projectPath UnityGame \
             -executeMethod Game.ConfigValidation.Run \
             -quit -nographics -logFile -
+          echo "Config validation passed"
 
