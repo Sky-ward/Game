@@ -1,0 +1,8 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: 728f34d202be4536b9e34e0fc44f7865, type: 3}
+  currency: 0
+  upgradeLevel: 0
