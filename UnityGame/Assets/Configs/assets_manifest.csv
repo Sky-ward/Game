@@ -13,3 +13,8 @@ Fonts/main.ttf,font,ui text,50KB,
 Levels/biome_a_layout.json,json,room graph for biome A,10KB,
 Levels/boss_layout.json,json,boss arena layout,5KB,
 Localization/strings.csv,csv,localized strings,20KB,
+Levels/room_archetypes.json,json,room type weights per biome,1KB,drives level room selection
+Levels/wave_configs.json,json,wave definitions per biome,1KB,drives enemy spawn waves
+Enemies/enemies.json,json,enemy stats,1KB,drives enemy attributes
+Items/items.json,json,item definitions,1KB,drives loot and consumables
+Progression/progression.json,json,experience progression,1KB,leveling curve
