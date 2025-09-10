@@ -33,19 +33,19 @@ public class EnemyTests
         player.tag = "Player";
         var playerHealth = player.AddComponent<Health>();
         var playerDamage = player.AddComponent<Damage>();
-        playerDamage.Amount = 7;
+        playerDamage.Amount = 7f;
         var playerCombat = player.AddComponent<PlayerCombat>();
 
         var enemy = new GameObject("Enemy");
         var enemyHealth = enemy.AddComponent<Health>();
         var enemyDamage = enemy.AddComponent<Damage>();
-        enemyDamage.Amount = 5;
+        enemyDamage.Amount = 5f;
 
         playerCombat.Attack(enemy);
-        Assert.AreEqual(enemyHealth.MaxHealth - 7, enemyHealth.Current);
+        Assert.AreEqual(enemyHealth.MaxHealth - 7f, enemyHealth.CurrentHealth);
 
         enemyDamage.DealDamage(player);
-        Assert.AreEqual(playerHealth.MaxHealth - 5, playerHealth.Current);
+        Assert.AreEqual(playerHealth.MaxHealth - 5f, playerHealth.CurrentHealth);
 
         Object.DestroyImmediate(player);
         Object.DestroyImmediate(enemy);

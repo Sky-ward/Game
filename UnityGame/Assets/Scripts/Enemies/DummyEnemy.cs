@@ -6,7 +6,7 @@ public class DummyEnemy : MonoBehaviour
     [SerializeField] public float moveSpeed = 2f;
     [SerializeField] public float chaseRange = 5f;
     [SerializeField] public float attackRange = 1f;
-    [SerializeField] public int contactDamage = 10;
+    [SerializeField] public float contactDamage = 10f;
     [SerializeField] private float attackCooldown = 1f;
 
     private Transform player;
