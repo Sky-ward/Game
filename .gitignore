@@ -12,6 +12,11 @@ __pycache__/
 UnityGame/Assets/Art/*
 !UnityGame/Assets/Art/Placeholders/
 !UnityGame/Assets/Art/Placeholders/.keep
+!UnityGame/Assets/Art/Prototypes/
+!UnityGame/Assets/Art/Prototypes/**
+
+UnityGame/Assets/Art/Prototypes/*.png
+
 UnityGame/Assets/Audio/*
 !UnityGame/Assets/Audio/Placeholders/
 !UnityGame/Assets/Audio/Placeholders/.keep
@@ -36,3 +41,8 @@ Audio/*
 ThirdParty/*
 !ThirdParty/
 !ThirdParty/.keep
+
+# Binary assets stored via base64
+UnityGame/Assets/Art/Prototypes/*.png
+UnityGame/Assets/Prefabs/Player.prefab
+UnityGame/Assets/Scenes/PrototypeMovement.unity
