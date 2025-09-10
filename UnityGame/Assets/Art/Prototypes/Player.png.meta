@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: a731cf9fffe04d39a842d1b408b694e1
+TextureImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  mipmaps:
+    enableMipMap: 0
+  textureType: 8
+  spriteMode: 1
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureFormat: 1
+  maxTextureSize: 2048
+  platformSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
