@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "skills": [
+    {"id": "fireball", "name": "Fireball", "prerequisites": [], "ability": "FireballAbility"},
+    {"id": "heal", "name": "Heal", "prerequisites": ["fireball"], "ability": "HealAbility"},
+    {"id": "dash", "name": "Dash", "prerequisites": ["fireball"], "ability": "DashAbility"}
+  ]
+}
