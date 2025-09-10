@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System.IO;
 using UnityEngine;
+using Game.Save;
 
 public class SaveSystemTests
 {
@@ -13,7 +14,7 @@ public class SaveSystemTests
 
         var data = new SaveData
         {
-            stats = { level = 5, health = 80, experience = 1200 },
+            stats = new SavePlayerStats { level = 5, health = 80, experience = 1200 },
             inventory = { "sword", "potion" },
             progress = { checkpoint = "Hub", stage = 3 }
         };
